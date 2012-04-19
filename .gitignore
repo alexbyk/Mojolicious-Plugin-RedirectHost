@@ -9,4 +9,4 @@ Makefile*
 MANIFEST*
 !MANIFEST.SKIP
 *.tar.gz
-MYMETA.*
+
