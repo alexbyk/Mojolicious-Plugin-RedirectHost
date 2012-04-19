@@ -1,5 +1,5 @@
 ---
-abstract: 'Redirects requests from mirrors to the main host (usefull for SEO)'
+abstract: 'Redirects requests from mirrors to the main host (useful for SEO)'
 author:
   - 'Alex <alexbyk@cpan.org>'
 build_requires:

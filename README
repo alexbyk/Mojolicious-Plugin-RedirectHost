@@ -4,7 +4,7 @@ Mojolicious Plugin. It redirects requests to the main host. Useful for SEO.
 
 USAGE
 
-Generate 301 redirect from C<http://mirror.main.host/path?query> to C<http://main.host/path?query>
+Redirect (301) requests from http://www.main.host to http://main.host
   
   # Mojolicious
   $app->plugin('RedirectHost', host => 'main.host');
