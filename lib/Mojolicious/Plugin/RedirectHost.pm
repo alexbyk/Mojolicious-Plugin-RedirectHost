@@ -74,7 +74,7 @@ sub register {
 
 =head1 NAME
 
-Mojolicious::Plugin::RedirectHost - Redirects requests from mirrors to the main host (usefull for SEO)
+Mojolicious::Plugin::RedirectHost - Redirects requests from mirrors to the main host (useful for SEO)
 
 =head1 VERSION
 
