@@ -1,6 +1,9 @@
 package Mojolicious::Plugin::RedirectHost;
+
 use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::URL;
+
+our $VERSION = '0.03_1';
 
 # where to look for options
 my $CONFIG_KEY   = 'redirect_host';
@@ -79,10 +82,6 @@ Mojolicious::Plugin::RedirectHost - Redirects requests from mirrors to the main 
 =head1 VERSION
 
 Version 0.02
-
-=cut
-
-our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS

@@ -37,6 +37,6 @@
          }
       }
    },
-   "release_status" : "stable",
-   "version" : "0.03"
+   "release_status" : "testing",
+   "version" : "0.03_1"
 }
