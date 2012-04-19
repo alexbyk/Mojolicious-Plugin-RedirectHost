@@ -1,14 +1,10 @@
 =head1 NAME
 
-Mojolicious::Plugin::RedirectHost - Перенаправляет запросы с зеркальных доменов на основной (полезно для SEO, чтобы не расплывались показатели ТИЦ и PageRank)
+Mojolicious::Plugin::RedirectHost::RuTutorial - Russian tutorial
 
 =head1 VERSION
 
-Version 0.02
-
-=cut
-
-our $VERSION = '0.02';
+Version 0.02_1
 
 
 =head1 SYNOPSIS
@@ -172,4 +168,3 @@ See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
-1;    # End of Mojolicious::Plugin::RedirectHost
