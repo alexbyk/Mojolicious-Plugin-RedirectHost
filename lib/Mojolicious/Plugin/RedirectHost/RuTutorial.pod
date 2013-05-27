@@ -4,7 +4,7 @@ Mojolicious::Plugin::RedirectHost::RuTutorial - Russian tutorial
 
 =head1 VERSION
 
-Version 0.02_1
+Version 0.03_2
 
 
 =head1 SYNOPSIS

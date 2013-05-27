@@ -22,7 +22,7 @@ DEFAULTS: {
   my $app = Mojolicious->new();
 
   $app->plugin('RedirectHost', host => $HOST);
-  $app->routes->get($ROUTE => sub { shift->render_text('ok') });
+  $app->routes->get($ROUTE => sub { shift->render(text => 'ok') });
 
   $t->app($app);
 

@@ -20,4 +20,4 @@ no_index:
 requires:
   Mojolicious: 2
   Test::More: 0
-version: 0.03_1
+version: 0.03_2

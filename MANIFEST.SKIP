@@ -1,0 +1,7 @@
+ignore.txt
+.komodoproject
+.tar.gz
+.old
+.SKIP
+.git
+t/manifest.t
