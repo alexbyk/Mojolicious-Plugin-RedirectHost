@@ -3,7 +3,7 @@ package Mojolicious::Plugin::RedirectHost;
 use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::URL;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 # where to look for options
 my $CONFIG_KEY   = 'redirect_host';
@@ -27,11 +27,19 @@ sub register {
 
   $app->hook(
     before_dispatch => sub {
-      my $c   = shift;
-      my $url = $c->req->url->to_abs;
+      my $c    = shift;
+      my $url  = $c->req->url->to_abs;
+      my $path = $c->req->url->path;
+
 
       # don't need redirection
       return if $url->host eq $options{host};
+
+      # TODO: check if except_path is RE or ARR
+      # path match exception
+      if (my $except_path = $options{except_path}) {
+        return if $path eq $except_path;
+      }
 
       # main host
       $url->host($options{host});
@@ -83,7 +91,7 @@ Mojolicious::Plugin::RedirectHost - Redirects requests from mirrors to the main 
 
 =head1 VERSION
 
-Version 0.03
+Version 0.05
 
 
 =head1 SYNOPSIS
@@ -111,6 +119,15 @@ This option is required. Without it plugin do nothing
   $app->plugin('RedirectHost', host => 'main.host', code => 302);
 
 Type of redirection. Default 301 (Moved Permanently)
+
+=head2 C<except_path>
+
+  $app->plugin('RedirectHost', host => 'main.host', except_path => '/robots.txt');
+
+If the path of the request will match C<except_path> value, redirection will be avoid.
+Path must begin with leading '/';
+Usefull to avoid /robots.txt redirections
+In the future maybe I'll make this parameter more flexible
 
 =head2 C<url>
 
@@ -234,7 +251,7 @@ L<http://search.cpan.org/dist/Mojolicious-Plugin-RedirectHost/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2012 Alex.
+Copyright 2014 Alex.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published

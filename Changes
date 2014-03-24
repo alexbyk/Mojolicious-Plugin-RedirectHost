@@ -1,5 +1,8 @@
 Revision history for Mojolicious-Plugin-RedirectHost
 
+0.05    2014-03-24
+        new except_path feature
+
 0.04    2012-05-27
         Mojolicious 4.x support
 
