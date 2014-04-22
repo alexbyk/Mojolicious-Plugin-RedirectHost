@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.00      2014-04-22 05:48:07+03:00 Europe/Kiev
+
 - added silent option
 - start using Dist::Zilla
 - added er option (except robots.txt) for Yandex
