@@ -16,3 +16,14 @@ It's possible to redirect all requests except /robots.txt using 'er' option. Tha
 If you don't know what that, just ignore that option and don't mind
 
 Use your_app.production.conf file to avoid redirecting localhost
+
+Installation
+----------
+
+You can install this plugin from CPAN
+
+	cpanm Mojolicious::Plugin::RedirectHost
+
+	cpan -i Mojolicious::Plugin::RedirectHost
+
+or using any of your favourite cpan manager
