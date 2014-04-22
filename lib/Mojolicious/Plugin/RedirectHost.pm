@@ -136,7 +136,7 @@ development process
 
 =head2 register
 
-Register. См L<Mojolicious::Plugin/register>
+Register.  L<Mojolicious::Plugin/register>
 
 =head1 TODO
 
