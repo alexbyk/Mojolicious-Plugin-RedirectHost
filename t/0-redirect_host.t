@@ -1,9 +1,9 @@
 #!/usr/bin/env perl
-use utf8;
 use Mojo::Base -strict;
-require Mojolicious;
+use Mojolicious;
+use utf8;
 
-use Test::More tests => 33;
+use Test::More;
 use Test::Mojo;
 use Mojo::Util 'url_escape';
 
@@ -35,61 +35,26 @@ DEFAULTS: {
   $t->get_ok($URL, {Host => $HOST})->status_is(200)->content_is('ok');
 }
 
-# another way to redirect
-PARAMS_URL_HASH: {
+
+RE_302: {
   my $t   = Test::Mojo->new();
   my $app = Mojolicious->new();
 
-  $app->plugin(
-    'RedirectHost',
-    host => $HOST,
-    code => 302,
-    url =>
-      {scheme => 'https', port => 8000, path => '/bar', query => [a => 'b'],},
-  );
+  $app->plugin('RedirectHost', host => $HOST, code => 302);
+  $app->routes->get($ROUTE => sub { shift->render(text => 'ok') });
 
-  $t->app($app)->get_ok('/foo', {Host => 'mirror223'})->status_is(302)
-    ->header_is(Location => "https://$HOST:8000/bar?a=b");
+  $t->app($app);
 
-  # не забыли ли локализовать удаляемый параметр?
-  $t->app($app)->get_ok('/foo', {Host => 'mirror223'})->status_is(302);
+  # redirect mirrors
+  $t->get_ok($URL, {Host => 'mirror223'})->status_is(302)
+    ->header_is(Location => $OK);
 }
 
-# another way to redirect
-PARAMS_URL_STRING: {
+EXCEPT_ROBOTS: {
   my $t   = Test::Mojo->new();
   my $app = Mojolicious->new();
 
-  $app->plugin('RedirectHost', host => $HOST, url => 'http://google.com/f?b',);
-
-  $t->app($app)->get_ok('/foo', {Host => 'mirror223'})
-    ->header_is(Location => "http://google.com/f?b");
-
-}
-
-
-# another way to redirect
-PARAMS_URL_OBJ: {
-  my $t   = Test::Mojo->new();
-  my $app = Mojolicious->new();
-
-  $app->plugin(
-    'RedirectHost',
-    host => $HOST,
-    url  => Mojo::URL->new('http://mail.ru'),
-  );
-
-  $t->app($app)->get_ok('/foo', {Host => 'mirror223'})
-    ->header_is(Location => "http://mail.ru");
-
-}
-
-
-EXCEPT_PATH: {
-  my $t   = Test::Mojo->new();
-  my $app = Mojolicious->new();
-
-  $app->plugin('RedirectHost', host => $HOST, except_path => $EXCEPT_PATH);
+  $app->plugin('RedirectHost', host => $HOST, er => 1);
   $app->routes->get($ROUTE    => sub { shift->render(text => 'ok') });
   $app->routes->get('/robots' => sub { shift->render(text => 'robots') });
 
@@ -109,8 +74,9 @@ EXCEPT_PATH: {
   $t->get_ok('/robots.txt2', {Host => 'mirror123'})->status_is(301)
     ->header_is(Location => "http://$HOST/robots.txt2");
 
-  # does not need a redirection
-  $t->get_ok($URL, {Host => $HOST})->status_is(200)->content_is('ok');
+  #exception does not match
+  $t->get_ok('/2/robots.txt', {Host => 'mirror123'})->status_is(301)
+    ->header_is(Location => "http://$HOST/2/robots.txt");
 }
 
 # app->config->{redirect_host}
@@ -118,10 +84,12 @@ CONFIG: {
   my $t   = Test::Mojo->new();
   my $app = Mojolicious->new();
 
-  $app->config($CONFIG_KEY => {host => $HOST});
+  $app->config($CONFIG_KEY => {host => $HOST, code => 303, er => 1});
   $app->plugin('RedirectHost');
 
-  $t->app($app)->get_ok('/foo?bar', {Host => 'mirror223'})->status_is(301)
+  $t->app($app)->get_ok('/foo?bar', {Host => 'mirror223'})->status_is(303)
     ->header_is(Location => "http://$HOST/foo?bar");
 
 }
+
+done_testing;

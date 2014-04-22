@@ -8,6 +8,7 @@ use Mojo::URL;
 # where to look for options
 my $CONFIG_KEY   = 'redirect_host';
 my $DEFAULT_CODE = 301;
+my $EXCEPT_PATH  = '/robots.txt';
 
 sub register {
   my ($self, $app, $params) = @_;
@@ -21,7 +22,9 @@ sub register {
   }
 
   unless ($options{host}) {
-    $app->log->error('RedirectHost plugin: define "host" option at least!');
+    my $msg = 'RedirectHost plugin: define "host" option at least!';
+    $app->log->error($msg) unless $options{silent};
+
     return;
   }
 
@@ -35,46 +38,16 @@ sub register {
       # don't need redirection
       return if $url->host eq $options{host};
 
-      # TODO: check if except_path is RE or ARR
-      # path match exception
-      if (my $except_path = $options{except_path}) {
-        return if $path eq $except_path;
+      # except_robots?
+      if ($options{er}) {
+        return if $path eq $EXCEPT_PATH;
       }
 
       # main host
       $url->host($options{host});
 
-      #$url->host(delete local $options{host});
-
       # code
       $c->res->code($options{code} || $DEFAULT_CODE);
-
-      #$c->res->code(delete local $options{code} || $DEFAULT_CODE);
-
-      if (ref $options{url} eq 'HASH') {
-
-        # query
-        if (ref $options{url}->{query} eq 'ARRAY') {
-          my @query = @{delete $options{url}->{query}};
-          $url->query(@query);
-
-        }
-
-        # замещаем значения
-        foreach my $what (keys %{$options{url}}) {
-          $url->$what($options{url}->{$what}) if $options{url}->{$what};
-        }
-      }
-      elsif (ref $options{url}) {
-
-        # replace a whole url with a passed Mojo::URL object
-        $url = $options{url};
-      }
-      elsif ($options{url}) {
-
-        # replace a whole url with a new one
-        $url = Mojo::URL->new($options{url});
-      }
 
 
       $c->redirect_to($url->to_string);
@@ -85,6 +58,7 @@ sub register {
 }
 
 1;
+
 # ABSTRACT: Redirects requests from mirrors to the main host (useful for SEO)
 
 =head1 SYNOPSIS
@@ -123,6 +97,20 @@ If true, requests like /robots.txt will not be redirected but rendered. That's f
 If you want to change a domain but worry about yandex TIC, it's recomended to make it possible for Yandex to read your robots.txt
 with new Host directive. If so, that's exactly what you're looking for
 
+=head2 C<silent>
+
+If C<silent> is true, doesn't write messages to the error log even if L</host> is missing.
+Default value is C<false>
+
+You can configure plugin in a production config file and define C<silent> in a development config.
+
+	# app.production.conf
+	# redirect_host => {host => 'main.host'},
+
+	# app.development.conf: 
+	# redirect_host => {silent => 1},
+
+
 =head1 CONFIG
 
 You can pass options to the plugin with the help of your config. Use C<redirect_host> key.
@@ -138,10 +126,4 @@ development process
 
 Register.  L<Mojolicious::Plugin/register>
 
-=head1 TODO
-
-Play around requests without "Host" header like this:
-  
-  GET / HTTP/1.1
-
-
+=cut
