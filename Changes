@@ -1,14 +1,20 @@
-Revision history for Mojolicious-Plugin-RedirectHost
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
+- start using Dist::Zilla
+- added er option (except robots.txt) for Yandex
+- remove russian docs
+- going to keep code simple
 
 0.05    2014-03-24
-        new except_path feature
+- new except_path feature
 
 0.04    2012-05-27
-        Mojolicious 4.x support
+- Mojolicious 4.x support
 
 0.03    2012-04-19
-        Russian docs
-        
+- Russian docs
+
 0.02    2012-04-19
-        First release, I hope the last one too)
+- First release, I hope the last one too)
 
