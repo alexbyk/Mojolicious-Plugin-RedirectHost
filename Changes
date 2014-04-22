@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.05_02   2014-04-22 04:27:15+03:00 Europe/Kiev
 - start using Dist::Zilla
 - added er option (except robots.txt) for Yandex
 - remove russian docs
