@@ -27,3 +27,32 @@ You can install this plugin from CPAN
 	cpan -i Mojolicious::Plugin::RedirectHost
 
 or using any of your favourite cpan manager
+
+Usage
+----------
+
+To redirect all requests to the main.host with 301 code (permanent) by default
+
+```perl
+# Mojolicious
+$app->plugin('RedirectHost', host => 'main.host');
+ 
+# Mojolicious::Lite
+plugin RedirectHost => { host => 'main.host' };
+```
+
+The best practise is to use an you_app.production.conf file to avoid redirection while developing in your local machine
+
+```perl
+# in your_app.production.host
+{
+  redirect_host => {host => 'main.host'},
+	#... other stuff
+}
+```
+
+```perl
+# in lib/YourApp.pm
+$app->plugin('Config');
+$app->plugin('RedirectHost');
+```
