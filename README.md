@@ -1,4 +1,4 @@
-Mojolicious-Plugin-RedirectHost
+Mojolicious-Plugin-RedirectHost [![Build Status](https://travis-ci.org/alexbyk/Mojolicious-Plugin-RedirectHost.svg)](https://travis-ci.org/alexbyk/Mojolicious-Plugin-RedirectHost)
 ========
 
 Going to change your domain name but worry about seo ranks of your site? 
@@ -43,7 +43,7 @@ plugin RedirectHost => { host => 'main.host' };
 
 The best practise is to use an you_app.production.conf file to avoid redirection while developing in your local machine
 
-```perl
+```
 # in your_app.production.host
 {
   redirect_host => {host => 'main.host'},

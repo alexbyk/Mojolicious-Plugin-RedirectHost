@@ -2,8 +2,12 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
-1.00      2014-04-22 05:48:07+03:00 Europe/Kiev
+- changed README.md
 
+1.01      2014-04-24 22:53:23+03:00 Europe/Kiev
+- added .travis.yml
+
+1.00      2014-04-22 05:48:07+03:00 Europe/Kiev
 - added silent option
 - start using Dist::Zilla
 - added er option (except robots.txt) for Yandex
