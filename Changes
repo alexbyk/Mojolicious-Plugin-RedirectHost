@@ -1,7 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-- added .perltidyrc file for perlcritic test
+- improved dist.ini
+- added .perlcritic file for Travic CI
 - changed README.md
 - changed cpanfile to install missing depencies (Test::Perl::Critic and Pod::Coverage::TrustPod) for TRAVIS CI
 
