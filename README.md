@@ -44,7 +44,7 @@ plugin RedirectHost => { host => 'main.host' };
 The best practise is to use an you_app.production.conf file to avoid redirection while developing in your local machine
 
 ```
-# in your_app.production.host
+# in your_app.production.conf
 {
   redirect_host => {host => 'main.host'},
 	#... other stuff
