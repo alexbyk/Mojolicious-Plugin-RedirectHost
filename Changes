@@ -1,8 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-
 - changed README.md
+- changed cpanfile to install missing depencies (Test::Perl::Critic and Pod::Coverage::TrustPod) for TRAVIS CI
 
 1.01      2014-04-24 22:53:23+03:00 Europe/Kiev
 - added .travis.yml
