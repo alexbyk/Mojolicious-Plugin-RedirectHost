@@ -24,7 +24,7 @@ my %WriteMakefileArgs = (
     "Mojolicious" => "3.0"
   },
   "TEST_REQUIRES" => {
-    "Test::More" => 0
+    "Test::More" => "0.88"
   },
   "VERSION" => "1.02",
   "test" => {
@@ -35,7 +35,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Mojolicious" => "3.0",
-  "Test::More" => 0
+  "Test::More" => "0.88"
 );
 
 
