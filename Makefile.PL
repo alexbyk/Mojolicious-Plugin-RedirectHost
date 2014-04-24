@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use 5.010001;
+
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -21,11 +21,10 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Mojolicious::Plugin::RedirectHost",
   "PREREQ_PM" => {
-    "Mojolicious" => "3.0"
+    "Mojolicious" => "3.0",
+    "Test::More" => "0.88"
   },
-  "TEST_REQUIRES" => {
-    "Test::More" => 0
-  },
+  "TEST_REQUIRES" => {},
   "VERSION" => "1.01",
   "test" => {
     "TESTS" => "t/*.t"
@@ -35,7 +34,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Mojolicious" => "3.0",
-  "Test::More" => 0
+  "Test::More" => "0.88"
 );
 
 
