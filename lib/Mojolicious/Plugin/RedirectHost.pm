@@ -89,7 +89,7 @@ This option is required. Without it plugin do nothing
 
 Type of redirection. Default 301 (Moved Permanently)
 
-=head2 C<er> (except /rotots.txt)
+=head2 C<er> (except /robots.txt)
 
   $app->plugin('RedirectHost', host => 'main.host', er => 1);
 
