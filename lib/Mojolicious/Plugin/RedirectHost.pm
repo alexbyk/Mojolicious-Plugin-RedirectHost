@@ -72,7 +72,17 @@ Generates 301 redirect from C<http://mirror.main.host/path?query> to C<http://ma
   # Mojolicious::Lite
   plugin RedirectHost => { host => 'main.host' };
 
-All requests with C<Host> header that are not equal to the C<host> option will be redirected to the main host
+All requests with C<Host> header that is not equal to the C<host> option will be redirected to the main host
+
+	www.main.host       => main.host
+	another.io/foo?bar  => main.host/foo?bar
+	etc...
+
+You can point as many domains to your App by DNS, as you want. It doesn't matter, all of them will become a mirror. An equivalent apache .htaccess file looks like
+
+	RewriteCond %{HTTP_HOST}   !^alexbyk.com
+	RewriteRule  ^(.*)		http://alexbyk.com/$1 [R=301,L]
+
 It would be better if you'll be using per mode config files (your_app.production.conf etc). This would make possible
 to redirect only in production enviropment (but do nothing while coding your app)
 

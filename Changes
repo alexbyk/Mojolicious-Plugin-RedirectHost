@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+- more explanation in docs
+
+1.03      2014-04-25 05:10:09+03:00 Europe/Kiev
 - fix small mistake in pod
 
 1.02      2014-04-25 02:51:04+03:00 Europe/Kiev

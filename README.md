@@ -6,11 +6,16 @@ Or maybe trying to improve seo rank by keeping only one version of your domain (
 
 That's what you're looking for.
 
-Plugin redirects all requests from mirrors to the only one host (domain);
+Plugin redirects all requests from mirrors (all request with a `Host` header not equal to the provided `host` option) to the only one host (domain);
 
-	mirror.main.host => main.host
-	www.main.host/foo?bar => main.host/foo?bar
+	www.main.host       => main.host
+	another.io/foo?bar  => main.host/foo?bar
 	etc...
+
+You can point as many domains to your App by DNS, as you want. It doesn't matter, all of them will become a mirror. An equivalent apache .htaccess file looks like
+
+	RewriteCond %{HTTP_HOST}   !^alexbyk.com
+	RewriteRule  ^(.*)		http://alexbyk.com/$1 [R=301,L]
 
 It's possible to redirect all requests except /robots.txt using 'er' option. That's made for Yandex search engine. It's for SEO optimization only.
 If you don't know what that, just ignore that option and don't mind
@@ -56,3 +61,7 @@ The best practise is to use an you_app.production.conf file to avoid redirection
 $app->plugin('Config');
 $app->plugin('RedirectHost');
 ```
+
+Options
+-------------------------
+Take a look at the cpan repository [page](https://metacpan.org/pod/Mojolicious::Plugin::RedirectHost) for the options details
