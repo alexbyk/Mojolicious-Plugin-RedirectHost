@@ -3,12 +3,12 @@ use Mojolicious::Lite;
 
 # To launch this app, type in your console:
 #
-#		morbo ExampleApp
+#  morbo ExampleApp
 #
 # and try to open several urls
 #
-#		http://127.0.0.1:3000
-#		http://127.0.0.123:3000
+#  http://127.0.0.1:3000
+#  http://127.0.0.123:3000
 #
 # you'll be redirected to http://localhost:3000
 #
