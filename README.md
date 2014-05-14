@@ -6,10 +6,11 @@ Or maybe trying to improve seo rank by keeping only one version of your domain (
 
 That's what you're looking for.
 
-Plugin redirects all requests from mirrors (all request with a `Host` header not equal to the provided `host` option) to the only one host (domain);
+All requests with a `Host` header that is not equal to the `host` option will be redirected to the main host (and to the same port, as it was in original request)
+Don't forget about the port (don't expect something great from `http://google.com:3000`)
 
-	www.main.host       => main.host
-	another.io/foo?bar  => main.host/foo?bar
+	http://www.main.host:3000       => http://main.host:3000
+	http://another.io:3000/foo?bar  => http://main.host:3000/foo?bar
 	etc...
 
 You can point as many domains to your App by DNS, as you want. It doesn't matter, all of them will become a mirror. An equivalent apache .htaccess file looks like
@@ -21,6 +22,8 @@ It's possible to redirect all requests except /robots.txt using 'er' option. Tha
 If you don't know what that, just ignore that option and don't mind
 
 Use your_app.production.conf file to avoid redirecting localhost
+
+Look at the `examples` directory of this distribution for a full application example
 
 Installation
 ----------

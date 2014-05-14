@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+- added examples
+
+1.04      2014-05-14 15:00:37+03:00 Europe/Kiev
 - more explanation in docs
 
 1.03      2014-04-25 05:10:09+03:00 Europe/Kiev
