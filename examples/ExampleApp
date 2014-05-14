@@ -4,7 +4,7 @@ use Mojolicious::Lite;
 # To launch this app, type in your console:
 #
 #		morbo ExampleApp
-#		
+#
 # and try to open several urls
 #
 #		http://127.0.0.1:3000
