@@ -15,7 +15,7 @@ use Mojolicious::Lite;
 # Keep in mind, if you are going to change host to 'google.com', you will be redirected to the http://google.com:3000 (to nothing)
 # But you can tell morbo to listen :80 (may require root privileges, depending on your OS)
 #
-# morbo -l 'http://*:80' WithPlugin
+#  morbo -l 'http://*:80' WithPlugin
 
 plugin RedirectHost => {host => 'localhost', code => 302};
 
