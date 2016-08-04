@@ -47,7 +47,7 @@
          "web" : "http://github.com/alexbyk/Mojolicious-Plugin-RedirectHost"
       }
    },
-   "version" : "1.06",
+   "version" : "1.07",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0217"
 }
 
