@@ -39,9 +39,7 @@ sub register {
       return if $url->host eq $options{host};
 
       # except_robots?
-      if ($options{er}) {
-        return if $path eq $EXCEPT_PATH;
-      }
+      return if $options{er} && $path eq $EXCEPT_PATH;
 
       # main host
       $url->host($options{host});
